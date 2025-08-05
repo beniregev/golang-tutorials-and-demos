@@ -82,4 +82,55 @@ You can run the program in 2 ways
 - Run the commnad `./hello` --> this will run the compiled program, IT WILL NOT COMPILE THE PROGRAM AGAIN.
 - Run the command `go run hello.go` --> this will compiled the program and run it.
 
-ß
+## DECLARING VARIABLE
+
+In Java we declare variables in the following syntax (for examole, type string):
+ 
+```java
+String greeting = "";
+```
+
+The same declaration is Goland will use the following syntax:
+
+```golang
+var greeting string
+```
+
+Variables can be declared and assigned a value at the same time:
+
+```java
+String greeting = "Hello, world!";
+```
+
+```golang
+var greeting = "Hello, world!"
+```
+
+The preferred way to initialize a variable in Golang is by using the shorthand declaration (with the colon and equal sign ":="):
+
+``golang
+greeting := "Hello, world!"
+```
+
+By default names of variables functions, constants, and types are package scope. It's difficult comparing it to Java access modifiers, since Golang has no class inheritance. The closest will be the `package private` or `default` default modifier. 
+
+We can make a name available outside of package scope, making it public to others importing the package, by simply capitalizing the name of the variable. This is known as exporting the name.  accessable A name can be exported by using a capital letter, making it a available outside the package scope. 
+
+**NOTE:** When declaring a variable in a program we must use it or get an error about a varialbe that is declared and not used. 
+
+We will change the "hello.go" program in another program "hello-var.go" and it will have the following code:
+
+```golang
+package main
+
+import "fmt"
+
+func main() {
+	greeting := "Hello, LinkedIn!"
+   fmt.Println(greeting)
+}
+```
+
+We will compile and run the program using the command `go run hello-var.go`.
+
+If we will not use the variable `greeting` as the argument to the `fmt.Println` function, then during compilation we will get an error about a variable `greeting` that is declared and not used.
