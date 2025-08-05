@@ -40,3 +40,22 @@ func main() {
 - `go test` - our "one stop shop" for running tests, including coverage and benchmarking. We will explore the `go test` tool in later sections of this tutorial, as test are so vital for development.
 
 The "GO" toolchain has other interesting commands, which you can research and read up on, but these are the main commands that we will be using in this tutorial. Let's try out these commands in practice.
+
+### RUNNING THE PROGRAM
+
+Navigate to the folder where your program is located, in my example that's `/a_transitioning-from-java-to-golang/0_hello-world.go`.
+
+Run command `ls` to verify you are in the directory of the `hello.go` file.
+
+compile the program using the tool "go build" and the command:
+```powershell
+go build hello.go
+```
+
+Run command `ls -lh` and see that you have a new filw called "hello" that is around 2 MB in size - that's the compiled Golang program ready to run.
+
+You can run the program in 2 ways
+- Run the commnad `./hello` --> this will run the compiled program, IT WILL NOT COMPILE THE PROGRAM AGAIN.
+- Run the command `go run hello.go` --> this will compiled the program and run it.
+
+ß
