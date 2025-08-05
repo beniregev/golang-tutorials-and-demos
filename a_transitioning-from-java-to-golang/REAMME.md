@@ -1,5 +1,29 @@
 # TRANSITIONING FROM JAVA TO GOLANG
 
+## SETUP GIT
+
+Download and install GIT.
+
+Set your global username:
+
+```powershell
+git config --global user.name "Your Name"
+```
+
+Set your global email address:
+
+```powershell
+git config --global user.email "your.email@example.com"
+```
+
+
+Confirm/verify your user.name and email configuration have been set correctly (optional), you can use the following commands: 
+
+```powershell
+git config --global user.name
+git config --global user.email
+```
+
 ## Installation
 
 In your browser navigate to [Golang Installation Documentation](https://go.dev/doc/install), follow and complete the instruction steps for your operating system (OS).
