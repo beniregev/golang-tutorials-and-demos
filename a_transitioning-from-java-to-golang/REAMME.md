@@ -134,3 +134,92 @@ func main() {
 We will compile and run the program using the command `go run hello-var.go`.
 
 If we will not use the variable `greeting` as the argument to the `fmt.Println` function, then during compilation we will get an error about a variable `greeting` that is declared and not used.
+
+### BASIC DATA TYPES
+
+Golang data types are divided into "Basic" and "Composite" data-types. 
+
+The "Basic" data-types include numbers, strings, and Boolean types. They are the basic building blocks of our data. 
+
+The "Composite" data types consist of:
+
+- arrays.
+- structs.
+- pointers.
+- functions.
+- interfaces.
+- slices.
+- maps.
+- channels.
+
+There 8 composite data-types use the basic types to build more advanced constructs and structures. 
+
+In Golang both signed and unsigned integers are available in the 8-bit, 16-bit, 32-bit, and 64-bit formats, as shown in the following table:
+
+#### SIGNED INTEGERS
+
+| Type | Size | Range |
+|:--- | :--- | :---: |
+| int8 | 8-bit | -128 to 127 |
+| int16 | 16-bit | -2<sup>15</sup> to 2<sup>15</sup> |
+| int32 | 32-bit | -2<sup>31</sup> to 2<sup>31</sup> |
+| int64 | 64-bit | -2<sup>63</sup> to 2<sup>63</sup> |
+| int | System<br>dependent | Systen<br>dependent |
+
+#### UNSIGNED INTEGERS
+
+| Type | Size | Range |
+|:--- | :--- | :---: |
+| uint8 | 8-bit | 0 to 255 |
+| uint16 | 16-bit | 0 to 2<sup>16</sup> - 1 |
+| uint32 | 32-bit | 0 to 2<sup>32</sup> - 1 |
+| uint64 | 64-bit | 0 to 2<sup>64</sup> - 1 |
+| uint | System<br>dependent | Systen<br>dependent |
+
+If we don't specify a format (8, 16, 32, or 64) then the integer will be either 32 or 64 bit depending on the system we are compiling for.
+
+#### OTHER ALIAS DATA TYPES
+
+The type `byte` is an alias for the data-type `uint8` and the type `rune` is an alias for the data-type `int32`. These 2 type represent character values. Unlike Java, Golang doesn't have a `char` data-type, so we use these 2 aliases instead.
+
+#### FLOATING POINT DATA TYPES
+
+Aside from integers Goland has 2 floating point types: `float32` and `float64`. By default the `float64` is inferred by the compiler. For example, when assigning a value in the following code, thje compiler with implicitly assign the `float64` type to it.
+
+```golang
+f := 123.456
+```
+
+#### BOOL DATA TYPE
+
+The type `bool` represent a Boolean value in Golang. Boolean store `true` or `false` values, and support the AND (&&), OR (||), and teh NOT (!) operators. Also, as expected logical operators support short circuit logic. The && (AND), and || (OR) support short circuit logic, for example:
+
+- In the expression `v1 && v2`, if `v1` is `false`, then `v2` is not evaluated (the result `false` is already known, and there's no chance for `true` in the result).
+
+#### STRING DATA TYPE
+
+In Golang we declare string either with double quotes (") or back-ticks (`). Strings enclosed in back ticks are raw strings where escape characters don't have any special meaning. In the following code, both statements are the same with the "Hello, world!" and "Goodbye" each on their own lines:
+
+```golang
+// Double quoted string - mew line character escaped
+var greeting := "Hello, world!\nGoodbye, world!"
+
+// Raw string (back-ticked) - can span multiple lines
+var raw := `Hellow, world!
+            Goodbye, world!`
+```
+
+#### ZERO VALUES
+
+Unless explicitly initialized, variables are automatically initialized with their "zero value":
+
+| Type | Zero Value |
+| :--- | :---: |
+| Integer | 0 |
+| Floating Point | 0.0 |
+| Boolean | false |
+| String | ""<br>(Empty string, not `null`) |
+
+This means that "Basic" data types are never `nil` (`null`) and need not to be `nil` checked.
+
+The file `1_zero-values/zero-values.go` contains code to demonstrates zero-values.
