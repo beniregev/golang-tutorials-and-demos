@@ -223,3 +223,59 @@ Unless explicitly initialized, variables are automatically initialized with thei
 This means that "Basic" data types are never `nil` (`null`) and need not to be `nil` checked.
 
 The file `1_zero-values/zero-values.go` contains code to demonstrates zero-values.
+
+### COMPOSITE DATA TYPES
+
+#### POINTERS
+
+A pointer is a composite data-type taht stores the memory address of a variable. It provides a way to point to where the memory is located and find the value saved at that address.
+
+There are 2 pointer operators:
+
+- The * operator is known as the dereferencing operator. It's used to declare a pointer variable, as well as access the value stored at that address.
+- The & operator is known as the address operator. It's user to return the memory address of a variable, which can then be saved to a pointer variable.
+
+Pointers are associated with a data type, and only references to that type can be stored in them. 
+
+The syntax to declare apointer is `var name *Type`. For example, `var ptr *string` which declares a pointer to a string. 
+
+Given the variable `a`, we initialize `var ptr *string = &a`. We initialize the pointer to the variable `a` using the address operator. The pointer will contain the memory address of the variable.
+
+Given an initialized pointer, we retrieve the value saved at that given pointer: `value := *ptr`.
+
+We can think of the 2 operator as a 2 oposites. 
+
+The zero value of a pointer is the `nil` value, that's how we call `null` value in Golang. As expected from our Java experience, operations performed on `nil` values will cause a oanic or `nil` pointer error at runtime.
+
+The following is the code of "pointers.go" file:
+
+```golang
+package main
+
+import "fmt"
+
+func main() {
+      // Declare pointer
+      var ptr *string
+
+      // initialize a greeting
+      greeting := "Hello, world!"
+
+      // Assign greeting address to pointer
+      ptr = &greeting
+
+      // Print out our variables
+      fmt.Println("Greeting: ", greeting)
+      fmt.Println("Address of greeting: ", ptr)
+      fmt.Println("Value stored in ptr: ", *ptr)
+}
+```
+
+Let's analize the code:
+
+- First, we declare a pointer variable which receives a `nil` value.
+- Second, we declare a sting variable with a string, this variable is assigned a memory address value.
+- At this point the `ptr` pointer and the `greeting` variables are still unrelated and unlinked.
+- Finally, we assign the address of teh `greeting` variable to the `ptr` pointer.
+
+In Golang, pointers can be a bit strange to deal with explicitly. We will revisit them throughout this tutorial. So don't worry if you still find them confusing after this introduction.
