@@ -457,3 +457,71 @@ func main() {
 ```
 
 The variables shorthand definition in the code `if r := x%2; r == 0` - The variable `r` only exist in the scope of the `if` statement. This makes the code less likely for errors.
+
+## ERROR HANDLING
+
+Error handling in **Go** language is fundamentally different than Java. 
+
+- There are no exception type in **Go** and error handling/checking is part of the regular program flow.
+- **Go** provides the inbuild (build-in) `error` type - its zero value is `nil`. The presence of any non-nil value suggest that something went wrong.
+- There are 2 main ways of initializing new error values:
+  - Initialize using `errors.New("error-message")`
+  - Using `fmt.Errorf("error-message",x )` the same as we used `Printf` previously.
+
+Due to formating ease, we will be using the `fmt.Errorf("error-message",x)` of formatting and creating errors going forward. 
+
+### EXPLICIT ERROR HANDLING
+
+Error handling in **Go** is fundamentally different by design. This choice was made to ensure the robustness of **Go** programs. Errors are explicitly returned by functions, then checked and handled, and calling code. We use multiple return values, pointers, and if/else statements to handle errors.
+
+Let's look at an example by changing the previously usee rectangle function to only calculate the area if neither argument is zero (0). We will return a `*int` that enables returning `nil` value to signal that no usable value will be returned in the case if an error. If there's no error then the `error` will return a `nil` value to signal successful completion:
+
+```golang
+package main
+
+import "fmt"
+
+func rectangle(x int, y int) (*int, error) {
+      if x == 0 || y == 0 {
+            return nil, fmt.Errorf("zero area: [%v, %v]", x, y)
+      }
+      area := x * y
+      return &area, nil
+}
+
+func main() {
+      a := 2
+      b := 3
+      area, err := rectangle(a, b)
+      if error == nil {
+            fmt.Printf("rectangle(%v, %v): area = %v;\n", a, b, area)
+      }}
+```
+
+We use an `if` statement to check for the error. We return `nil` and a formatted error in this case.
+
+If the error case is not satisfied, then we return a pointer to the calculated area and `nil` value for the error.
+
+Next, let's havea look at how we check for errors on the calling side in the `main` function:
+
+- First, we call the function and assign return values to variales as usual. It's usual to name the return value as `err` in **Go**.
+- By convention, error checking comes first is code flow. 
+- if the `err` value is not `nil`, then we know we need to handle it. We print the message and stop execution.
+
+This keeps code simple to read, minimally indented, and ensure we don't run any other unintended code branches.
+
+The zero value of the error type is `nil`, so if the returned error is non-nil, the we know something has gone wrong and we need to handle errors. in our case, we simply print the error and stop code execution by returning at this point.
+
+Finally, if we will make it past the error handling portion of the code, we know it's safe to deference any other pointer return values without additional checks. Remember that this is only the case if you're returning the error handling portion above. So it's important to do so.
+
+### PANICS
+
+Another way to handle unexpected errors is by forcefully exiting using the `panic` keyword to print the error message and call stack then abort the program. The `recover` function can stop the panic and resume eecution. 
+
+You can read about `panic` and `recover` outside of this tutorial, as they should be used sparingly.
+
+### DEFERRED FUNCTIONS
+
+The `defer` statement can be applied before a function call. This statement is added before the function invocation, for example, `defer myfunc()`.
+
+Defering a function means we delay (postpone) the function execution until the surrounding function finishes. 
